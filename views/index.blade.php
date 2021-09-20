@@ -1,7 +1,8 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-    <div class="row container" id="wrapper">
+    <div class="container">
+        <div class="row container" id="wrapper">
         <div class="mymo-panel-filter">
             <div class="panel-heading">
                 <div class="row">
@@ -47,5 +48,6 @@
             </section>
         </main>
 
+    </div>
     </div>
 @endsection

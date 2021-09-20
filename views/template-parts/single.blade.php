@@ -8,7 +8,6 @@
                         <span>
                             <span>
                                 <a href="{{ route('home') }}">@lang('theme::app.home')</a> »
-                                <a href="">@lang('theme::app.posts')</a> »
                                 <span class="breadcrumb_last" aria-current="page">{{ $post->getTitle() }}</span>
                             </span>
                         </span>
@@ -43,11 +42,12 @@
             </div>
 
             <div class="comments">
+
             </div>
         </section>
     </main>
 
     <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
-
+        {{ dynamic_sidebar('sidebar') }}
     </aside>
 </div>

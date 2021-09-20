@@ -36,19 +36,18 @@
             <section>
                 <div class="section-bar clearfix">
                     <h3 class="section-title">
-                        <span>{{ $info->name }}</span>
+                        <span>{{ $page->getTitle() }}</span>
                     </h3>
                 </div>
 
-
                 <div class="mymo_box">
-                    {!! $info->content !!}
+                    {!! $page->getContent() !!}
                 </div>
             </section>
         </main>
 
         <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
-            @include('data.sidebar')
+            {{ dynamic_sidebar('sidebar') }}
         </aside>
     </div>
 

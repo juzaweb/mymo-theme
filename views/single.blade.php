@@ -1,5 +1,7 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-    {{ get_template_part($post, 'single') }}
+    <div class="container">
+        {{ get_template_part($post, 'single') }}
+    </div>
 @endsection
