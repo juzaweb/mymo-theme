@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row container" id="wrapper">
     <div class="mymo-panel-filter">
         <div class="panel-heading">
@@ -50,4 +51,5 @@
     <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
         {{ dynamic_sidebar('sidebar') }}
     </aside>
+</div>
 </div>

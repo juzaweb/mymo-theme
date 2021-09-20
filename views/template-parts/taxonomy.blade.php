@@ -53,7 +53,7 @@
                 <div class="mymo_box">
                     @foreach($items as $item)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-21564">
-                            @include('data.item')
+                            {{ get_template_part($item, 'content') }}
                         </article>
                     @endforeach
                 </div>
@@ -80,7 +80,7 @@
         </main>
 
         <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
-            @include('data.sidebar')
+            {{ dynamic_sidebar('sidebar') }}
         </aside>
     </div>
 
