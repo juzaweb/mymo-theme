@@ -31,7 +31,7 @@
 
             </div><!-- end panel-default -->
 
-            <main id="main-contents" class="col-xs-12 col-sm-12 col-md-12">
+            <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
                 <section>
                     <div class="section-bar clearfix">
                         <h3 class="section-title">
@@ -50,13 +50,11 @@
                     @endif
 
                     <div class="mymo_box">
-                        @if($posts->isNotEmpty())
-                            @foreach($posts as $post)
+                        @foreach($posts as $post)
+                            <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-21564">
                                 {{ get_template_part($post, 'content') }}
-                            @endforeach
-                        @else
-                            {{ get_template_part(null, 'content', 'none' ) }}
-                        @endif
+                            </article>
+                        @endforeach
                     </div>
 
                     <div class="clearfix"></div>
@@ -79,6 +77,10 @@
                     @endif
                 </section>
             </main>
+
+            <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+                {!! dynamic_sidebar('sidebar') !!}
+            </aside>
         </div>
     </div>
 @endsection

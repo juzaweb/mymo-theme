@@ -1,19 +1,27 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
+    @php
+        $cats = $post->getTaxonomies('categories', true);
+    @endphp
 
 <div class="container">
     <div class="row container" id="wrapper">
         <div class="mymo-panel-filter">
             <div class="panel-heading">
                 <div class="row">
-
                     <div class="col-xs-8 hidden-xs">
                         <div class="yoast_breadcrumb">
                             <span>
                                 <span>
                                     <a href="{{ route('home') }}">@lang('theme::app.home')</a> »
+
+                                    @foreach($cats as $cat)
+                                        <a href="{{ $cat->getLink() }}">{{ $cat->getName() }}</a> »
+                                    @endforeach
+
                                     <span class="breadcrumb_last" aria-current="page">{{ $post->getTitle() }}</span>
+
                                 </span>
                             </span>
                         </div>

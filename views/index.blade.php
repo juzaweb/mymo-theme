@@ -42,7 +42,7 @@
                 <div class="clearfix"></div>
 
                 <div class="text-center">
-                    {{ $posts->links() }}
+                    {{ $posts->links('theme::data.pagination') }}
                 </div>
 
             </section>

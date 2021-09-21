@@ -11,7 +11,7 @@
                             <span>
                                 <span>
                                     <a href="{{ route('home') }}">@lang('theme::app.home')</a> »
-                                    <span class="breadcrumb_last" aria-current="page">{{ $taxonomy->getName() }}</span>
+                                    <span class="breadcrumb_last" aria-current="page">{{ $title }}</span>
                                 </span>
                             </span>
                             </div>
@@ -35,7 +35,7 @@
                 <section>
                     <div class="section-bar clearfix">
                         <h3 class="section-title">
-                            <span>{{ $taxonomy->getName() }}</span>
+                            <span>{{ $title }}</span>
 
                             {{--<span class="pull-right sortby">Sort by: <a href="?sortby=movie">Movie</a> / <a href="?sortby=tv_series">TV Series</a></span>--}}
 
