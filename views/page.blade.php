@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('juzaweb::layouts.frontend')
 
 @section('content')
 
@@ -47,7 +47,7 @@
         </main>
 
         <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
-            {{ dynamic_sidebar('sidebar') }}
+            {!! dynamic_sidebar('sidebar') !!}
         </aside>
     </div>
 

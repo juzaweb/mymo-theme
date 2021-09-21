@@ -15,8 +15,7 @@
             @endforeach
         @endif
     @endforeach
-    {{--<li><span class="page-numbers dots">&hellip;</span></li>
-    <li><a class="page-numbers" href="/phim-moi-nhat/page/156">156</a></li>--}}
+
     @if ($paginator->hasMorePages())
     <li><a class="next page-numbers" href="{{ $paginator->nextPageUrl() }}" title="@lang('pagination.next')"><i class="hl-down-open rotate-right"></i></a></li>
     @endif
