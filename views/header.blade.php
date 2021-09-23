@@ -15,6 +15,7 @@
                                     <i class="animate-spin hl-spin4 hidden"></i>
                                 </div>
                             </div>
+                            <input type="hidden" name="type" value="movies">
                         </form>
                         <ul class="ui-autocomplete ajax-results hidden"></ul>
                     </div>

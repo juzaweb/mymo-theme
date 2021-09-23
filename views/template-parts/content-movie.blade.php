@@ -14,7 +14,7 @@
         }
     @endphp
     
-    <a class="mymo-thumb" href="" title="{{ $post->getTitle() }}{{ $post->origin_title ? ' - ' . $post->origin_title : '' }}">
+    <a class="mymo-thumb" href="{{ $post->getLink() }}" title="{{ $post->getTitle() }}{{ $post->origin_title ? ' - ' . $post->origin_title : '' }}">
         <figure>
             <img class="lazyload blur-up img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ $post->getThumbnail() }}" alt="{{ $post->getTitle() }}{{ $post->origin_title ? ' - ' . $post->origin_title : '' }}" title="{{ $post->getTitle() }}{{ $post->origin_title ? ' - ' . $post->origin_title : '' }}">
         </figure>

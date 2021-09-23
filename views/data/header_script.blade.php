@@ -1,7 +1,7 @@
 <script type='text/javascript'>
     /* <![CDATA[ */
     var mymo = {
-        "ajax_search_url": "{{ route('search') }}",
+        "ajax_search_url": "{{ route('ajax.search') }}",
         "ajax_notification_url": "",
         "ajax_remove_all_notification_url": "",
         "ajax_popular_movies_url": "",
@@ -19,10 +19,6 @@
             'bookmark': '@lang('theme::app.bookmark')',
         }
     };
-
-    var langs = {
-        'data_error': '@lang('theme::app.data_error')'
-    };
     /* ]]> */
 </script>
 
@@ -30,9 +26,9 @@
     /* <![CDATA[ */
     var ajax_auth_object = {
         "logined": "{{ Auth::check() ? '1' : '0' }}",
-        "login_url": "",
+        "login_url": "{{ route('login') }}",
         "user_registration": "{{ get_config('user_registration') }}",
-        "register_url": "",
+        "register_url": "{{ route('register') }}",
         "forgot_password_url": "",
         "redirecturl":"{{ url()->current() }}",
         "loadingmessage":"{{ trans('theme::app.please_wait') }}",
@@ -61,7 +57,7 @@
 
 <style type="text/css">
     #header .site-title {
-        background: url({{ upload_url(get_config('logo')) }}) no-repeat top left;
+        background: url({{ get_logo() }}) no-repeat top left;
         text-indent: -9999px;
     }
 </style>

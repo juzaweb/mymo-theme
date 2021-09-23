@@ -64,19 +64,6 @@
                         {{ $posts->links('theme::data.pagination') }}
                     </div>
 
-                    @if(@$taxonomy->description)
-                        <div class="entry-content htmlwrap clearfix">
-                            <div class="video-item mymo-entry-box">
-                                <article id="post-312" class="item-content">
-                                    {{ $taxonomy->description }}
-                                </article>
-                                <div class="item-content-toggle">
-                                    <div class="item-content-gradient"></div>
-                                    <span class="show-more" data-single="true" data-showmore="@lang('theme::app.show_more')" data-showless="@lang('theme::app.show_less')">@lang('theme::app.show_more')</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </section>
             </main>
         </div>
