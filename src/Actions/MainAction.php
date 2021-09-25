@@ -12,13 +12,15 @@ namespace Theme\Actions;
 
 
 use Juzaweb\Abstracts\Action;
+use Juzaweb\Facades\HookAction;
 
 class MainAction extends Action
 {
     public function handle()
     {
-        $this->addAction('theme.call_action', [$this, 'addBodyClass']);
-        $this->addAction('theme.call_action', [$this, 'addHeaderScript']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addStyles']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addBodyClass']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addHeaderScript']);
 
     }
 
@@ -34,5 +36,11 @@ class MainAction extends Action
         $this->addAction('theme.header', function () {
             echo e(view('theme::data.header_script'));
         });
+    }
+
+    public function addStyles()
+    {
+        HookAction::enqueueFrontendScript('main', 'assets/js/main.js');
+        HookAction::enqueueFrontendStyle('main', 'assets/css/main.css');
     }
 }
