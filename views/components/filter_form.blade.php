@@ -1,6 +1,8 @@
 <div class="mymo-search-filter">
     <div class="btn-group col-md-12">
-        <form action="{{ route('search') }}" id="form-filter" class="form-inline" method="GET">
+        <form method="get" action="{{ route('search') }}" id="form-filter" class="form-inline">
+            <input type="hidden" name="type" value="movies">
+
             <div class="col-md-1 col-xs-12 col-sm-6">
                 <div class="filter-box">
                     <div class="filter-box-title">@lang('theme::app.sort')</div>
@@ -16,7 +18,7 @@
             <div class="col-md-1 col-xs-12 col-sm-6">
                 <div class="filter-box">
                     <div class="filter-box-title">@lang('theme::app.formats')</div>
-                    <select class="form-control" id="type" name="formality">
+                    <select class="form-control" id="format" name="formality">
                         <option value="">@lang('theme::app.formats')</option>
                         <option value="1">@lang('theme::app.movies')</option>
                         <option value="2">@lang('theme::app.tv_series')</option>
@@ -24,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2 col-xs-12 col-sm-6">
+            {{--<div class="col-md-2 col-xs-12 col-sm-6">
                 <div class="filter-box">
                     <div class="filter-box-title">@lang('theme::app.status')</div>
                     <select class="form-control" name="status">
@@ -33,12 +35,12 @@
                         <option value="ongoing">@lang('theme::app.ongoing')</option>
                     </select>
                 </div>
-            </div>
+            </div>--}}
 
             <div class="col-md-2 col-xs-12 col-sm-6">
                 <div class="filter-box">
                     <div class="filter-box-title">@lang('theme::app.country')</div>
-                    <select class="form-control" name="country">
+                    <select class="form-control" name="countries[]">
                         <option value="">@lang('theme::app.country')</option>
                         @foreach($countries as $country)
                         <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -46,13 +48,14 @@
                     </select>
                 </div>
             </div>
+
             <div class="col-md-1 col-xs-12 col-sm-6">
                 <div class="filter-box">
                     <div class="filter-box-title">@lang('theme::app.year')</div>
-                    <select class="form-control" name="release">
+                    <select class="form-control" name="years[]">
                         <option value="">@lang('theme::app.year')</option>
                         @foreach($years as $year)
-                        <option value="{{ $year->year }}">{{ $year->year }}</option>
+                        <option value="{{ $year->id }}">{{ $year->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -61,7 +64,7 @@
             <div class="col-md-3 col-xs-12 col-sm-6">
                 <div class="filter-box">
                     <div class="filter-box-title">@lang('theme::app.genre')</div>
-                    <select class="form-control" id="genre" name="genre">
+                    <select class="form-control" id="genre" name="genres[]">
                         <option value="">@lang('theme::app.genre')</option>
                         @foreach($genres as $genre)
                         <option value="{{ $genre->id }}">{{ $genre->name }}</option>
@@ -73,6 +76,7 @@
             <div class="col-md-2 col-xs-12 col-sm-6">
                 <button type="submit" id="btn-movie-filter" class="btn btn-danger">@lang('theme::app.filter_movies')</button>
             </div>
+
         </form>
     </div>
 </div>

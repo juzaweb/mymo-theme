@@ -52,7 +52,9 @@
                     <div class="mymo_box">
                         @if($posts->isNotEmpty())
                             @foreach($posts as $post)
+                                <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-{{ $post->id }}">
                                 {{ get_template_part($post, 'content') }}
+                                </article>
                             @endforeach
                         @else
                             {{ get_template_part(null, 'content', 'none' ) }}
@@ -61,7 +63,7 @@
 
                     <div class="clearfix"></div>
                     <div class="text-center">
-                        {{ $posts->links('theme::data.pagination') }}
+                        {{ $posts->appends(request()->query())->links('theme::data.pagination') }}
                     </div>
 
                 </section>

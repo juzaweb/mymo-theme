@@ -125,4 +125,8 @@ return [
     'reset_password' => 'Reset password',
     'new_password' => 'New password',
     'please_wait' => 'Please wait...',
+    'slider_movie' => 'Slider movie',
+    'slider_movie_description' => 'Slider movie movie for home page',
+    'home_page_sidebar' => 'Home page sidebar',
+    'sidebar_page' => 'Sidebar all page',
 ];

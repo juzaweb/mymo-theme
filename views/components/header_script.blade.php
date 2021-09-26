@@ -6,7 +6,7 @@
         "ajax_remove_all_notification_url": "",
         "ajax_popular_movies_url": "",
         "ajax_get_movies_by_genre_url": "",
-        "ajax_filter_form_url": "",
+        "ajax_filter_form_url": "{{ route('ajax', ['mymo_filter_form']) }}",
         "light_mode":"0",
         "light_mode_btn":"1",
         "ajax_live_search":"1",
@@ -45,10 +45,11 @@
             "email":"@lang('theme::app.email')",
             "username_email":"@lang('theme::app.email')",
             "password":"@lang('theme::app.password')",
-            "reset_password":"@lang('theme::app.reset_password')",
-            "login_with":"@lang('theme::app.login_with')",
-            "register_with":"@lang('theme::app.register_with')",
-            "or":"@lang('theme::app.or')",
+            "reset_password":"{{ trans('theme::app.reset_password') }}",
+            "login_with":"{{ trans('theme::app.login_with') }}",
+            "register_with":"{{ trans('theme::app.register_with') }}",
+            "or":"{{ trans('theme::app.or') }}",
+            "result_for_keyword":"{{ trans('theme::app.result_for_keyword') }}",
             "apparently_there_are_no_posts_to_show": "{{ trans('theme::app.apparently_there_are_no_posts_to_show') }}"
         }
     };
