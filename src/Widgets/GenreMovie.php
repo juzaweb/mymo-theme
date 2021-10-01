@@ -10,13 +10,11 @@
 
 namespace Theme\Widgets;
 
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Juzaweb\Abstracts\Widget;
 
-class SliderMovie extends Widget
+class GenreMovie extends Widget
 {
-
     /**
      * Creating widget Backend
      *
@@ -25,7 +23,7 @@ class SliderMovie extends Widget
      */
     public function form($data)
     {
-        return view('theme::components.widgets.slider_movie.form', compact(
+        return view('theme::components.widgets.genre.form', compact(
             'data'
         ));
     }
@@ -38,12 +36,9 @@ class SliderMovie extends Widget
      */
     public function show($data)
     {
-        return view(
-            'theme::components.widgets.slider_movie.show',
-            compact(
-                'data'
-            )
-        );
+        return view('theme::components.widgets.genre.show', compact(
+            'data'
+        ));
     }
 
     /**

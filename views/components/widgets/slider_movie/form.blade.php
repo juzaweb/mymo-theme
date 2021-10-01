@@ -5,8 +5,8 @@
 ])@endcomponent
 
 @component('juzaweb::widgets.select_taxonomy', [
-    'name' => 'genres[]',
-    'value' => $data['genres'] ?? [],
+    'name' => 'taxonomies[]',
+    'value' => $data['taxonomies'] ?? [],
     'post_type' => 'movies',
     'multiple' => true,
     'label' => trans('theme::app.genre'),

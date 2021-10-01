@@ -1,16 +1,42 @@
-<section id="mymo-advanced-widget-{{ $i }}">
+<section id="mymo-advanced-widget-{{ $data['key'] }}">
+    @php
+        $tax = \Juzaweb\Models\Taxonomy::find($data['taxonomy'] ?? null);
+        if ($tax) {
+            $wdata = [
+                'url' => $tax->getLink(),
+            ];
+        } else {
+            $wdata = [
+                'url' => '',
+            ];
+        }
+
+        $query = \Juzaweb\Movie\Models\Movie\Movie::createFrontendBuilder();
+
+        if ($data['tv_series'] ?? 0) {
+            $query->where('tv_series', '=', $data['taxonomy'] - 1);
+        }
+
+        if ($data['taxonomy'] ?? null) {
+            $query->whereTaxonomy($data['taxonomy']);
+        }
+
+        $items = $query->limit(6)->get();
+    @endphp
+
     <h4 class="section-heading">
-        <a href="{{ @$genre->url }}" title="{{ @$genre->title }}">
-            <span class="h-text">{{ @$genre->title }}</span>
+        <a href="{{ $wdata['url'] }}" title="{{ $data['title'] }}">
+            <span class="h-text">{{ $data['title'] }}</span>
         </a>
 
-        @if(@$home->{'genre' . $i}->child_genres)
+        @if($data['childs'] ?? [])
             @php
-                $child_genres = child_genres_setting($home->{'genre' . $i}->child_genres);
+                $childs = \Juzaweb\Models\Taxonomy::whereIn('id', $data['childs'])
+                    ->get(['id', 'name']);
             @endphp
             <ul class="heading-nav pull-right hidden-xs">
-                @foreach($child_genres as $child)
-                    <li class="section-btn mymo_ajax_get_post" data-catid="{{ $child->id }}" data-showpost="12" data-widgetid="mymo-advanced-widget-{{ $i }}" data-layout="6col">
+                @foreach($childs as $child)
+                    <li class="section-btn mymo_ajax_get_post" data-catid="{{ $child->id }}" data-showpost="12" data-widgetid="mymo-advanced-widget-{{ $child->id }}" data-layout="6col">
                         <span data-text="{{ $child->name }}"></span>
                     </li>
                 @endforeach
@@ -18,16 +44,17 @@
         @endif
     </h4>
 
-    <div id="mymo-advanced-widget-{{ $i }}-ajax-box" class="mymo_box">
-        @if(!$genre->items->isEmpty())
-            @foreach($genre->items as $item)
+    <div id="mymo-advanced-widget-{{ $data['key'] }}-ajax-box" class="mymo_box">
+        @if(!$items->isEmpty())
+            @foreach($items as $item)
                 <article class="col-md-2 col-sm-4 col-xs-6 thumb grid-item post-{{ $item->id }}">
-                    @include('data.item')
+                    {{ get_template_part($item, 'content') }}
                 </article>
             @endforeach
         @endif
 
-        <a href="{{ @$genre->url }}" class="see-more">@lang('theme::app.view_all') »</a>
+        <a href="{{ $wdata['url'] }}" class="see-more">@lang('theme::app.view_all') »</a>
     </div>
+
 </section>
 <div class="clearfix"></div>

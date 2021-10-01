@@ -13,6 +13,7 @@ namespace Theme\Actions;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Juzaweb\Models\Taxonomy;
+use Theme\Widgets\GenreMovie;
 use Theme\Widgets\SliderMovie;
 
 class MainAction extends Action
@@ -98,6 +99,12 @@ class MainAction extends Action
             'label' => trans('theme::app.slider_movie'),
             'description' => trans('theme::app.slider_movie_description'),
             'widget' => new SliderMovie(),
+        ]);
+
+        HookAction::registerWidget('genre_movie', [
+            'label' => trans('theme::app.genre_movie'),
+            'description' => trans('theme::app.genre_movie_description'),
+            'widget' => new GenreMovie(),
         ]);
     }
 }

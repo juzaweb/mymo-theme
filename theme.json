@@ -4,5 +4,8 @@
   "description": "Mymo",
   "author": "Mymo",
   "version": "1.0",
-  "parent": ""
+  "parent": "",
+  "require": {
+    "juzaweb/movie": "^1.0"
+  }
 }
