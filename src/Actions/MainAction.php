@@ -12,9 +12,9 @@ namespace Theme\Actions;
 
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
-use Juzaweb\Models\Taxonomy;
 use Theme\Widgets\GenreMovie;
 use Theme\Widgets\SliderMovie;
+use Juzaweb\Movie\Http\Controllers\AjaxController;
 
 class MainAction extends Action
 {
@@ -52,23 +52,7 @@ class MainAction extends Action
     public function registerAjaxs()
     {
         HookAction::registerFrontendAjax('mymo_filter_form', [
-            'callback' => [$this, 'getFilterForm'],
-        ]);
-    }
-
-    public function getFilterForm()
-    {
-        $genres = Taxonomy::where('taxonomy', '=', 'genres')
-            ->get(['id', 'name']);
-        $countries = Taxonomy::where('taxonomy', '=', 'countries')
-            ->get(['id', 'name']);
-        $years = Taxonomy::where('taxonomy', '=', 'years')
-            ->get(['id', 'name']);
-
-        return view('theme::components.filter_form', [
-            'genres' => $genres,
-            'countries' => $countries,
-            'years' => $years,
+            'callback' => [app(AjaxController::class), 'getFilterForm'],
         ]);
     }
 

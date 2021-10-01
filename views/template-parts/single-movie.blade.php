@@ -14,6 +14,10 @@
     @endphp
 
     @if(request()->query('video'))
+        @php
+        $is_watch = true;
+        $player_id = request()->query('video');
+        @endphp
         @include('theme::watch.watch')
     @else
         @include('theme::watch.index')

@@ -14,7 +14,7 @@
 
                                             <a href="{{ $post->getLink() }}">{{ $post->getTitle() }}</a> »
 
-                                            <span class="breadcrumb_last" aria-current="page">@lang('theme::app.episode') {{ @\Juzaweb\Movie\Models\Video\VideoFile::find($player_id, ['label'])->label }}</span>
+                                            <span class="breadcrumb_last" aria-current="page">{{ trans('theme::app.episode') }} {{ @\Juzaweb\Movie\Models\Video\VideoFile::find($player_id, ['label'])->label }}</span>
                                         </span>
                                     </span>
                                 </span>
@@ -122,14 +122,14 @@
                     <div class="clearfix"></div>
 
                     <div class="title-block watch-page">
-                        <a href="javascript:;" data-toggle="tooltip" title="@lang('theme::app.add_to_bookmark')">
-                            <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-post_id="{{ $post->id }}" data-thumbnail="{{ $post->getThumbnail() }}" data-href="{{ $post->getLink() }}" data-title="{{ $post->name }}" data-date="{{ $post->release }}">
+                        <a href="javascript:;" data-toggle="tooltip" title="{{ trans('theme::app.add_to_bookmark') }}">
+                            <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-post_id="{{ $post->id }}" data-thumbnail="{{ $post->getThumbnail() }}" data-href="{{ $post->getLink() }}" data-title="{{ $post->getTitle() }}" data-date="{{ $post->release }}">
                                 <!-- <div class="mymo-pulse-ring"></div> -->
                             </div>
                         </a>
 
                         <div class="title-wrapper full">
-                            <h1 class="entry-title"><a href="" title="{{ $post->title }}" class="tl">{{ $post->title }}</a></h1>
+                            <h1 class="entry-title"><a href="" title="{{ $post->getTitle() }}" class="tl">{{ $post->getTitle() }}</a></h1>
 
                             <span class="plot-collapse" data-toggle="collapse" data-target="#expand-post-content" aria-expanded="false" aria-controls="expand-post-content" data-text="@lang('theme::app.movie_plot')"><i class="hl-angle-down"></i></span>
                         </div>
@@ -152,7 +152,7 @@
 
                     <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
                         <article id="post-{{ $post->id }}" class="item-content post-{{ $post->id }}">
-                            {!! $post->description !!}
+                            {!! $post->getContent() !!}
                         </article>
                     </div>
 
@@ -170,9 +170,9 @@
                                     ->get(['id', 'label']);
                             @endphp
                             <div class="mymo-server show_all_eps" data-episode-nav="">
-                                    <span class="mymo-server-name">
-                                        <span class="hl-server"></span> {{ $server->name }}
-                                    </span>
+                                <span class="mymo-server-name">
+                                    <span class="hl-server"></span> {{ $server->name }}
+                                </span>
 
                                 <ul id="listsv-{{ $server->id }}" class="mymo-list-eps">
                                     @foreach($videoFiles as $file)

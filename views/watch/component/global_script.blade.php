@@ -4,13 +4,13 @@
         "post_url": "{{ url()->current() }}",
         "ajax_url": "",
         "set_movie_view_url": "",
-        "player_url": "",
-        "rating_url": "",
-        "loading_img": "{{ asset('styles/themes/mymo/images/ajax-loader.gif') }}",
+        "player_url": "{{ route('ajax', ['get-player']) }}",
+        "rating_url": "{{ route('ajax', ['movie-rating']) }}",
+        "loading_img": "{{ asset('themes/mymo/images/ajax-loader.gif') }}",
         "eps_slug": "eps",
         "server_slug": "s",
         "type_slug": "slug-2",
-        "post_title": "{{ $post->name }}",
+        "post_title": "{{ $post->title }}",
         "post_id": '{{ isset($is_watch) ? $post->id : '' }}',
         "episode_slug": "",
         "server": 1,
@@ -45,11 +45,11 @@
             "title": "{{ $post->getTitle() }}",
             "alert": "",
             "msg": "@lang('theme::app.content')",
-            "msg_success": "@lang('theme::app.thank_you_for_submitting_error_message')",
+            "msg_success": "{{ trans('theme::app.thank_you_for_submitting_error_message') }}",
             "loading_img": "{{ asset('styles/themes/mymo/images/loading.gif') }}",
-            "report_btn": "@lang('theme::app.report')",
-            "name_or_email": "@lang('theme::app.name')",
-            "close": "@lang('theme::app.close')"
+            "report_btn": "{{ trans('theme::app.report') }}",
+            "name_or_email": "{{ trans('theme::app.name') }}",
+            "close": "{{ trans('theme::app.close') }}"
         }
     }
 </script>
