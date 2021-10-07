@@ -102,7 +102,7 @@
             </div>
             <div class="col-xs-12 col-sm-4 col-md-6 text-right pull-right">
                 <p class="blog-info">
-                    Make by <strong>Juzaweb TEAM</strong>
+                    Provided by <a href="https://juzaweb.com" rel="nofollow"><strong>Juzaweb</strong></a>
                 </p>
             </div>
         </div>

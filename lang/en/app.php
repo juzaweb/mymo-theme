@@ -129,4 +129,8 @@ return [
     'slider_movie_description' => 'Slider movie movie for home page',
     'home_page_sidebar' => 'Home page sidebar',
     'sidebar_page' => 'Sidebar all page',
+    'on' => 'On',
+    'off' => 'Off',
+    'expand' => 'Expand',
+    'collapse' => 'Collapse',
 ];
