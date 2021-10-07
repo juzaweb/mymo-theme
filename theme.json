@@ -6,6 +6,7 @@
   "version": "1.0",
   "parent": "",
   "require": {
-    "juzaweb/movie": "^1.0"
+    "juzaweb/movie": "^1.0",
+    "juzaweb/image-slider": "^1.0.1"
   }
 }

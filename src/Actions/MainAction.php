@@ -15,6 +15,7 @@ use Juzaweb\Facades\HookAction;
 use Theme\Widgets\GenreMovie;
 use Theme\Widgets\SliderMovie;
 use Juzaweb\Movie\Http\Controllers\AjaxController;
+use Theme\Widgets\SliderWidget;
 
 class MainAction extends Action
 {
@@ -89,6 +90,12 @@ class MainAction extends Action
             'label' => trans('theme::app.genre_movie'),
             'description' => trans('theme::app.genre_movie_description'),
             'widget' => new GenreMovie(),
+        ]);
+
+        HookAction::registerWidget('slider', [
+            'label' => trans('theme::app.slider'),
+            'description' => trans('theme::app.slider_description'),
+            'widget' => new SliderWidget(),
         ]);
     }
 }

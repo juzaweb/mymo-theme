@@ -133,4 +133,6 @@ return [
     'off' => 'Off',
     'expand' => 'Expand',
     'collapse' => 'Collapse',
+    'genre_movie' => 'Genre movie',
+    'genre_movie_description' => 'Home list movie by genre or country',
 ];
