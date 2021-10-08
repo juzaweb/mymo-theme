@@ -6,10 +6,10 @@
 <div class="container">
     <div class="text-center"></div>
     @php
-    $items = $slider->content ?: [];
+    $items = !empty($slider->content) ? (array) $slider->content : [];
     @endphp
-    <div class="row fullwith-slider">
 
+    <div class="row fullwith-slider">
     <!-- Wrapper For Slides -->
         <div id="mymo-fullwith-slider-widget-2" class="owl-carousel owl-carousel-fullwidth owl-theme">
             @if($items)
