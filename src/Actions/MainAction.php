@@ -13,6 +13,7 @@ namespace Theme\Actions;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Theme\Widgets\GenreMovie;
+use Theme\Widgets\PopularWidget;
 use Theme\Widgets\SliderMovie;
 use Juzaweb\Movie\Http\Controllers\AjaxController;
 use Theme\Widgets\SliderWidget;
@@ -96,6 +97,12 @@ class MainAction extends Action
             'label' => trans('theme::app.slider'),
             'description' => trans('theme::app.slider_description'),
             'widget' => new SliderWidget(),
+        ]);
+
+        HookAction::registerWidget('popular_movies', [
+            'label' => trans('theme::app.popular_movies'),
+            'description' => trans('theme::app.popular_movies_description'),
+            'widget' => new PopularWidget(),
         ]);
     }
 }

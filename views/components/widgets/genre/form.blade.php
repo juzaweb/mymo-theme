@@ -1,5 +1,5 @@
 @component('juzaweb::widgets.input', [
-    'label' => trans('theme::app.title'),
+    'label' => trans('juzaweb::app.title'),
     'name' => 'title',
     'value' => $data['title'] ?? ''
 ])@endcomponent

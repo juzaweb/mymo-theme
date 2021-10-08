@@ -3,7 +3,7 @@
         "act": "",
         "post_url": "{{ url()->current() }}",
         "ajax_url": "",
-        "set_movie_view_url": "",
+        "set_movie_view_url": "{{ route('ajax', ['set-view']) }}",
         "player_url": "{{ route('ajax', ['get-player']) }}",
         "rating_url": "{{ route('ajax', ['movie-rating']) }}",
         "loading_img": "{{ asset('themes/mymo/images/ajax-loader.gif') }}",
