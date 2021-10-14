@@ -25,7 +25,6 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addStyles']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addBodyClass']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addHeaderScript']);
-        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'registerAjaxs']);
         $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'registerTemplates']);
         $this->addAction(Action::WIDGETS_INIT, [$this, 'registerSidebars']);
         $this->addAction(Action::WIDGETS_INIT, [$this, 'registerWidgets']);
@@ -49,13 +48,6 @@ class MainAction extends Action
     {
         HookAction::enqueueFrontendScript('main', 'assets/js/main.js');
         HookAction::enqueueFrontendStyle('main', 'assets/css/main.css');
-    }
-
-    public function registerAjaxs()
-    {
-        HookAction::registerFrontendAjax('mymo_filter_form', [
-            'callback' => [app(AjaxController::class), 'getFilterForm'],
-        ]);
     }
 
     public function registerTemplates()

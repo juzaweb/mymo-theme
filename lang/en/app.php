@@ -131,9 +131,13 @@ return [
     'sidebar_page' => 'Sidebar all page',
     'on' => 'On',
     'off' => 'Off',
+    'posts' => 'Posts',
     'expand' => 'Expand',
     'collapse' => 'Collapse',
     'genre_movie' => 'Genre movie',
     'genre_movie_description' => 'Home list movie by genre or country',
     'all' => 'All',
+    'popular_movies' => 'Popular movies',
+    'slider_description' => 'Slider movie home page',
+    'popular_movies_description' => 'Popular movies in sidebar',
 ];

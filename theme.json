@@ -7,6 +7,7 @@
   "parent": "",
   "require": {
     "juzaweb/movie": "^1.0",
-    "juzaweb/image-slider": "^1.0.1"
+    "juzaweb/image-slider": "^1.0.1",
+    "sokil/php-vast": "^2.0"
   }
 }
