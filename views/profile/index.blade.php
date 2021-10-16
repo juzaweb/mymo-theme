@@ -10,7 +10,7 @@
                             <div class="yoast_breadcrumb"><span>
                             <span>
                                 <a href="{{ route('home') }}">@lang('theme::app.home')</a> »
-                                <span class="breadcrumb_last" aria-current="page">{{ $user->name }}</span>
+                                <span class="breadcrumb_last" aria-current="page">{{ trans('theme::app.profile') }}</span>
                             </span>
                         </span>
                             </div>
