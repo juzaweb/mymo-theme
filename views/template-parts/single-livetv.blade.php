@@ -98,7 +98,7 @@
 
                 <div class="clearfix"></div>
                 @php
-                    $ads = get_ads('player_bottom');
+                    $ads = mymo_get_ads('player_bottom');
                 @endphp
                 @if($ads)
                 <div class="text-center">

@@ -43,7 +43,7 @@
                     </div>
 
                     @php
-                        $ads = get_ads('genre_header');
+                        $ads = mymo_get_ads('genre_header');
                     @endphp
                     @if($ads)
                         {!! $ads !!}

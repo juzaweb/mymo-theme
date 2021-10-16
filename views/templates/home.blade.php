@@ -21,7 +21,7 @@
             </div><!-- end panel-default -->
 
             @php
-                $ads = get_ads('home_header');
+                $ads = mymo_get_ads('home_header');
             @endphp
 
             @if($ads)

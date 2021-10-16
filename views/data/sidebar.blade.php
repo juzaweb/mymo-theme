@@ -11,7 +11,7 @@ $sidebar = theme_setting('sidebar');
 @endif
 
 @php
-$ads = get_ads('sidebar');
+$ads = mymo_get_ads('sidebar');
 @endphp
 @if($ads)
 <div id="text-14" class="widget widget_text">

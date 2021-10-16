@@ -172,7 +172,7 @@
                     </div>
                     <div class="clearfix"></div>
 
-                    @php($ads = get_ads('player_bottom'))
+                    @php($ads = mymo_get_ads('player_bottom'))
                     @if($ads)
                     <!-- Ads -->
                         <div class="mb-3">
