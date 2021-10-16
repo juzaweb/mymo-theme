@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('juzaweb::layouts.frontend')
 
 @section('content')
     <div class="row container" id="wrapper">

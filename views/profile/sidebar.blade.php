@@ -12,7 +12,7 @@
             <!-- SIDEBAR USER TITLE -->
             <div class="profile-usertitle">
                 <div class="profile-usertitle-name">
-                    <a href="{{ route('account') }}"></a>
+                    <a href="{{ route('profile') }}"></a>
                 </div>
                 <div class="profile-usertitle-job">
                     subscriber
@@ -28,20 +28,20 @@
             <!-- SIDEBAR MENU -->
             <div class="profile-usermenu">
                 <ul class="nav">
-                    <li @if(request()->is('account')) class="active" @endif>
-                        <a href="{{ route('account') }}"><i class="hl-user"></i> @lang('theme::app.profile')</a>
+                    <li @if(request()->is('profile')) class="active" @endif>
+                        <a href="{{ route('profile') }}"><i class="hl-user"></i> @lang('theme::app.profile')</a>
                     </li>
 
-                    <li @if(request()->is('account/notification*')) class="active" @endif>
-                        <a href="{{ route('account.notification') }}"><i class="hl-bell"></i> @lang('theme::app.notification')</a>
+                    <li @if(request()->is('profile/notification*')) class="active" @endif>
+                        <a href="{{ route('profile') }}/notification"><i class="hl-bell"></i> @lang('theme::app.notification')</a>
                     </li>
 
-                    <li @if(request()->is('account/change-password')) class="active" @endif>
-                        <a href="{{ route('account.change_password') }}"><i class="hl-lock-open-alt"></i> @lang('theme::app.change_password')</a>
+                    <li @if(request()->is('profile/change-password')) class="active" @endif>
+                        <a href="{{ route('profile.change_password') }}"><i class="hl-lock-open-alt"></i> @lang('theme::app.change_password')</a>
                     </li>
 
                     <li>
-                        <a href="{{ route('logout') }}" data-turbolinks="false"><i class="hl-off"></i> @lang('theme::app.logout')</a>
+                        <a href="{{ route('logout') }}" data-turbolinks="false"><i class="hl-off"></i> {{ trans('theme::app.logout') }}</a>
                     </li>
                 </ul>
             </div>

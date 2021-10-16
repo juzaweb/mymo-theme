@@ -49,9 +49,9 @@
                                     <li><a href="{{ route('admin.dashboard') }}" data-turbolinks="false"><i class="hl-cog"></i> @lang('theme::app.admin_panel')</a></li>
                                 @endif
 
-                                <li><a href=""><i class="hl-user"></i> @lang('theme::app.profile')</a></li>
+                                <li><a href="{{ route('profile') }}"><i class="hl-user"></i> @lang('theme::app.profile')</a></li>
 
-                                <li><a href="{{ route('auth.logout') }}" data-turbolinks="false"><i class="hl-off"></i> @lang('theme::app.logout')</a></li>
+                                <li><a href="{{ route('logout') }}" data-turbolinks="false"><i class="hl-off"></i> @lang('theme::app.logout')</a></li>
                             </ul>
                         @else
                         <a href="javascript:void(0)" class="avt" id="userInfo">
