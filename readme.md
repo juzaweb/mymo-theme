@@ -7,4 +7,4 @@ MYMO is a powerful, flexible and User friendly movie & Video Steaming CMS Pro wi
 - Search and add mymo theme
 
 ## Documentation
-[https://juzaweb.com/theme/mymo/docs](https://juzaweb.com/theme/mymo/docs
+[https://juzaweb.com/theme/mymo/docs](https://juzaweb.com/theme/mymo/docs)
