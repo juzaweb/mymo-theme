@@ -1,0 +1,65 @@
+{
+    "body_class": "home blog wp-embed-responsive mymothemes mymomovies mymo-corner-rounded",
+    "append_header": "theme::components.header_script",
+    "styles": {
+        "js": [
+            "assets/js/main.js"
+        ],
+        "css": [
+            "assets/css/main.css"
+        ]
+    },
+    "templates": {
+        "home": {
+            "label": "Home",
+            "view": "theme::templates.home",
+            "blocks": {
+                "content": {
+                    "label": "Content"
+                }
+            }
+        },
+        "movie": {
+            "label": "Movies",
+            "view": "theme::templates.movie"
+        },
+        "tvseries": {
+            "label": "TV Series",
+            "view": "theme::templates.tv_series"
+        }
+    },
+    "sidebars": {
+        "sidebar": {
+            "label": "Sidebar"
+        }
+    },
+    "widgets": {
+        "popular_movie": {
+            "label": "Popular movie",
+            "description": "Movie Popular sidebar",
+            "view": "theme::components.widgets.popular_movies.show"
+        }
+    },
+    "nav_menus": {
+        "primary": {
+            "label": "Primary menu"
+        }
+    },
+    "blocks": {
+        "slider_movie": {
+            "label": "Slider movie",
+            "description": "Slider movie for home page",
+            "view": "theme::components.blocks.slider_movie.show"
+        },
+        "genre_movie": {
+            "label": "Genre movie",
+            "description": "Movie by genre",
+            "view": "theme::components.blocks.genre.show"
+        },
+        "slider": {
+            "label": "Slider",
+            "description": "Slider Movie Home page",
+            "view": "theme::components.blocks.slider.show"
+        }
+    }
+}

@@ -1,13 +1,13 @@
 {
-  "name": "mymo",
-  "title": "Mymo",
-  "description": "Mymo",
-  "author": "Mymo",
-  "version": "1.0",
-  "parent": "",
-  "require": {
-    "juzaweb/movie": "^1.0",
-    "juzaweb/image-slider": "^1.0.1",
-    "sokil/php-vast": "^2.0"
-  }
+    "name": "mymo",
+    "title": "Mymo",
+    "description": "Mymo",
+    "author": "Mymo",
+    "version": "1.0.5",
+    "parent": "",
+    "require": {
+        "juzaweb/movie": "^1.1.1",
+        "juzaweb/image-slider": "^1.0.1",
+        "sokil/php-vast": "^2.0"
+    }
 }

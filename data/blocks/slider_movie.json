@@ -1,0 +1,18 @@
+{
+    "form": [
+        {
+            "type": "text",
+            "name": "title",
+            "label": "Title"
+        },
+        {
+            "type": "taxonomy",
+            "name": "taxonomies",
+            "label": "Genres",
+            "data": {
+                "post_type": "movies",
+                "multiple": true
+            }
+        }
+    ]
+}

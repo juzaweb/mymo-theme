@@ -1,0 +1,125 @@
+<header id="header">
+    <div class="container">
+        <div class="row" id="headwrap">
+            <div class="col-md-2 col-sm-6 slogan">
+                <h1 class="site-title">
+                    <a class="logo" href="/" rel="home">{{ config('title') }}</a>
+                </h1>
+            </div>
+
+            <div class="col-md-5 col-sm-6 mymo-search-form hidden-xs">
+                <div class="header-nav">
+                    <div class="col-xs-12">
+                        <form id="search-form-pc" name="mymoForm" role="search" action="{{ url('search') }}" method="GET">
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <input id="search" type="text" name="q" value="{{ input_get('q') }}" class="form-control" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ __('Press enter to search') }}" placeholder="{{ __('Search movies or tv series') }}" autocomplete="off" required>
+                                    <i class="animate-spin hl-spin4 hidden"></i>
+                                </div>
+                            </div>
+                            <input type="hidden" name="type" value="movies">
+                        </form>
+                        <ul class="ui-autocomplete ajax-results hidden"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 hidden-xs text-right">
+                <div id="get-bookmark" class="box-shadow">
+                    <i class="hl-bookmark"></i><span> {{ __('Bookmark') }}</span>
+                    <span class="count">0</span>
+                </div>
+
+                <div id="get-notification" class="box-shadow">
+                    <i class="hl-bell"></i>
+                    {% if auth %}
+                        {#<span class="count">{{ user()->unreadNotifications()->count() }}</span>#}
+                    {% else %}
+                        <span class="count">0</span>
+                    {% endif %}
+                </div>
+
+                <div class="user user-login-option box-shadow" id="pc-user-login">
+                    <div class="dropdown">
+                        {% if auth %}
+                            <a href="javascript:void(0)" class="avt" id="userInfo2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <img src='https://1.gravatar.com/avatar/?s=20&#038;d=mm&#038;r=g' srcset='https://2.gravatar.com/avatar/?s=40&#038;d=mm&#038;r=g 2x' class='avatar avatar-20 photo avatar-default' height='20' width='20' />
+                                <span class="name">{{ __('Account') }}</span>
+                            </a>
+                            <ul class="dropdown-menu login-box" aria-labelledby="userInfo2">
+                                <li><a href="{{ url('profile') }}"><i class="hl-user"></i> {{ __('Profile') }}</a></li>
+
+                                <li><a href="#" onclick="$('.logout-form').submit()" data-turbolinks="false"><i class="hl-off"></i> {{ __('Logout') }}</a></li>
+
+
+                            </ul>
+
+                            <form method="post" action="{{ url('logout') }}" class="logout-form">
+                                {{ csrf_field() }}
+                            </form>
+                        {% else %}
+                        <a href="javascript:void(0)" class="avt" id="userInfo">
+                            <img src='http://1.gravatar.com/avatar/?s=20&#038;d=mm&#038;r=g' srcset='https://2.gravatar.com/avatar/?s=40&#038;d=mm&#038;r=g 2x' class='avatar avatar-20 photo avatar-default' height='20' width='20' />
+                            <span class="name">{{ __('Login') }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div id="bookmark-list" class="hidden bookmark-list-on-pc">
+                    <ul style="margin: 0;"></ul>
+                </div>
+
+                <div id="notification-list" class="hidden notification-list-on-pc">
+                    <ul style="margin: 0;"></ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div class="navbar-container">
+    <div class="container">
+        <nav class="navbar mymo-navbar main-navigation" role="navigation" data-dropdown-hover="1">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#mymo" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#user-info" aria-expanded="false">
+                    <span class="hl-dot-3 rotate" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="navbar-toggle collapsed pull-right expand-search-form" data-toggle="collapse" data-target="#search-form" aria-expanded="false">
+                    <span class="hl-search" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
+                    <i class="hl-bookmark" aria-hidden="true"></i>
+                    <span class="count">0</span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="mymo">
+                <div class="menu-main-menu-container">
+                    <ul id="menu-main-menu" class="nav navbar-nav navbar-left">
+                        {{ jw_nav_menu({
+                            'theme_location': 'primary',
+                            'container_before': '',
+                            'container_after': '',
+                            'item_view': 'theme::components.menu_item'
+                        }) }}
+                    </ul>
+
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div class="collapse navbar-collapse" id="search-form">
+            <div id="mobile-search-form" class="mymo-search-form"></div>
+        </div>
+        <div class="collapse navbar-collapse" id="user-info">
+            <div id="mobile-user-login"></div>
+        </div>
+    </div>
+</div>

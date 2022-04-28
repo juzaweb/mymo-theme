@@ -1,0 +1,52 @@
+{% extends 'layouts.frontend' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row container" id="wrapper">
+            <div class="mymo-panel-filter">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-8 hidden-xs">
+                            {{ config('title') }}
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <a href="javascript:;" id="expand-ajax-filter">{{ __('Filter movies') }} <i id="ajax-filter-icon" class="hl-angle-down"></i></a>
+                        </div>
+                        <div id="alphabet-filter" style="float: right;display: inline-block;margin-right: 25px;"></div>
+                    </div>
+                </div>
+                <div id="ajax-filter" class="panel-collapse collapse" aria-expanded="true" role="menu">
+                    <div class="ajax"></div>
+                </div>
+            </div><!-- end panel-default -->
+
+            <main id="main-contents" class="col-xs-12 col-sm-12 col-md-12">
+
+                <section>
+                    <div class="section-bar clearfix">
+                        <h3 class="section-title">
+                            <span>{{ __('Posts') }}</span>
+                        </h3>
+                    </div>
+
+                    <div class="mymo_box">
+                        {% if page.data %}
+                            {% for post in page.data %}
+                                {{ get_template_part(post, 'content') }}
+                            {% endfor %}
+                        {% else %}
+                            {{ get_template_part(null, 'content', 'none' ) }}
+                        {% endif %}
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="text-center">
+                        {{ paginate_links(page, 'theme::components.pagination') }}
+                    </div>
+
+                </section>
+            </main>
+        </div>
+    </div>
+{% endblock %}

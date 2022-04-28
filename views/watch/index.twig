@@ -1,0 +1,265 @@
+<div class="container">
+    <div class="row container" id="wrapper">
+        <div class="mymo-panel-filter">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-8 hidden-xs">
+                        <div class="yoast_breadcrumb">
+                            <span>
+                                <span>
+                                    <a href="{{ url('/') }}">{{ __('Home') }}</a> »
+                                    {% if genre %}
+                                        <a href="{{ genre.url }}">{{ genre.name }}</a> »
+                                    {% endif %}
+
+                                    <span class="breadcrumb_last" aria-current="page">{{ post.title }}</span>
+
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 text-right">
+                        <a href="javascript:;" id="expand-ajax-filter">{{ __('Filter movies') }} <i id="ajax-filter-icon" class="hl-angle-down"></i></a>
+                    </div>
+                    <div id="alphabet-filter" style="float: right;display: inline-block;margin-right: 25px;"></div>
+                </div>
+            </div>
+            <div id="ajax-filter" class="panel-collapse collapse" aria-expanded="true" role="menu">
+                <div class="ajax"></div>
+            </div>
+        </div><!-- end panel-default -->
+
+        <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+            <section id="content">
+                <div class="clearfix wrap-content">
+
+                    {% include('theme::components.global_script') %}
+
+                    <div class="mymo-movie-wrapper">
+                        <div class="title-block watch-page">
+                            <a href="javascript:;" data-toggle="tooltip" title="{{ __('Add to bookmark') }}">
+                                <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-post_id="{{ post.id }}" data-thumbnail="{{ post.thumbnail }}" data-href="" data-title="{{ post.title }}" data-date="{{ post.metas.release }}">
+                                    <!-- <div class="mymo-pulse-ring"></div> -->
+                                </div>
+                            </a>
+
+                            <div class="title-wrapper">
+                                <h1 class="entry-title" data-toggle="tooltip" title="{{ post.title }}">{{ post.title }} {% if post.metas.year %} <span class="title-year"> (<a href="" rel="tag">{{ post.metas.year }}</a>)</span> {% endif %}</h1>
+                            </div>
+
+                            {% set star = post.rating %}
+
+                            <div class="ratings_wrapper hidden-xs">
+                                <div class="mymo_imdbrating taq-score">
+                                    <span class="score">{{ star }}</span><i>/</i>
+                                    <span class="max-ratings">5</span>
+                                    <span class="total_votes">{{ post.total_rating }}</span><span class="vote-txt"> {{ __('votes') }}</span>
+                                </div>
+
+                                <div class="rate-this">
+                                    <div data-rate="{{ star * 100 / 5 }}" data-id="{{ post.id }}" class="user-rate user-rate-active">
+                                        <span class="user-rate-image post-large-rate stars-large">
+                                            <span style="width: {{ star * 100 / 5 }}%"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="more-info">
+                                {% if post.metas.tv_series == 0 %}
+                                    <span>{{ __('Full') }}</span>
+                                    {% if post.metas.runtime %}
+                                    <span>{{ post.metas.runtime }}</span>
+                                    {% endif %}
+
+                                {% else %}
+                                    <span>{{ __('Episode') }} {{ post.metas.current_episode }}{{ post.metas.max_episode ? '/' ~ post.metas.max_episode : '' }}</span>
+                                {% endif %}
+                                <span>
+                                    {% for genre in genres %}
+                                        <a href="{{ genre.url }}" rel="category tag">{{ genre.name }}</a>,
+                                    {% endfor %}
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="movie_info col-xs-12">
+                            <div class="movie-poster col-md-3">
+                                <img class="movie-thumb" src="{{ post.thumbnail }}" alt="{{ post.title }}">
+                                <div class="mymo_imdbrating"><span>{{ post.metas.rating }}</span></div>
+                                <a href="" class="btn btn-sm btn-danger watch-movie visible-xs-block"><i class="hl-play"></i>{{ __('Watch') }}</a>
+
+                                {% set trailer = post.metas.trailer_link|split('v=') %}
+                                {% set trailer = trailer[1] ? 'https://www.youtube.com/embed/' ~ trailer[1] : '' %}
+
+                                <span id="show-trailer" data-url="{{ trailer }}" class="btn btn-sm btn-primary show-trailer">
+                                    <i class="hl-youtube-play"></i> {{ __('Trailer') }}</span>
+
+                                <span class="btn btn-sm btn-success quick-eps" data-toggle="collapse" href="#collapseEps" aria-expanded="false" aria-controls="collapseEps">
+                                        <i class="hl-sort-down"></i> {{ __('Episodes') }}
+                                    </span>
+                            </div>
+
+                            <div class="film-poster col-md-9">
+                                <div class="film-poster-img" style="background: url('{{ upload_url(post.metas.poster) }}'); background-size: cover; background-repeat: no-repeat;background-position: 30% 25%;height: 300px;/*-webkit-filter: grayscale(100%); filter: grayscale(100%);*/"></div>
+                                {% if player_id %}
+                                    <div class="mymo-play-btn hidden-xs">
+                                        <a href="" class="play-btn" title="{{ __('Click to play') }}" data-toggle="tooltip" data-placement="bottom" rel="nofollow">{{ __('Click to play') }}</a>
+                                    </div>
+                                {% endif %}
+
+                                <div class="movie-trailer hidden"></div>
+
+                                <div class="movie-detail">
+                                    {% if countries %}
+                                        <p class="actors">{{ __('Countries') }}:
+                                            {% for country in countries %}
+                                                <a href="{{ country.url }}" title="{{ country.name }}">{{ country.name }}</a>
+                                            {% endfor %}
+                                        </p>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div id="mymo_trailer"></div>
+
+                    <div class="collapse" id="collapseEps">
+                        <div class="text-center mymo-ajax-list-server">
+                            <div id="mymo-ajax-list-server">
+                                <script>var svlists = [];</script>
+                            </div>
+                        </div>
+
+                        <div id="mymo-list-server" class="list-eps-ajax">
+                            {% set servers = get_post_resources('servers', {
+                                post_id: post.id
+                            }) %}
+
+                            {% for server in servers %}
+                                {% set files = get_post_resources('files', {
+                                    post_id: post.id,
+                                    parent_id: server.id
+                                }) %}
+
+                                <div class="mymo-server show_all_eps" data-episode-nav="">
+                                    <span class="mymo-server-name">
+                                        <span class="hl-server"></span> {{ server.name }}
+                                    </span>
+
+                                    <ul id="listsv-{{ server.id }}" class="mymo-list-eps">
+                                        {% for file in files %}
+                                            <li class="mymo-episode mymo-episode-{{ file.id }}"><a href="{{ post.url }}?video={{ file.id }}" title="{{ file.name }}" rel="nofollow"><span class="mymo-info-{{ file.id }} box-shadow mymo-btn" data-post-id="{{ post.id }}" data-server="{{ server.id }}" data-episode-slug="{{ file.id }}" data-position="first" data-embed="0">{{ file.name }}</span></a></li>
+                                        {% endfor %}
+                                    </ul>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div id="pagination-{{ server.id }}"></div>
+                            {% endfor %}
+
+                            {#@if(post.downloadLinks->isNotEmpty())
+                                <div class="mymo-server show_all_eps">
+                                    <span class="mymo-server-name">
+                                        <span class="hl-download"></span> {{ trans('theme::app.download') }}
+                                    </span>
+
+                                    <ul id="listsv-download" class="mymo-list-eps">
+                                        @foreach(post.downloadLinks as $download_link)
+                                            <li class="mymo-episode"><a href="" target="_blank" rel="nofollow" title="{{ download_link.label }}"><span class="mymo-download-{{ download_link.id }} box-shadow mymo-btn" data-post-id="{{ post.id }}">{{ download_link.label }}</span></a></li>
+                                        @endforeach
+                                    </ul>
+
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div id="pagination-download"></div>
+                            {% endif %}#}
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    {#@php($ads = mymo_get_ads('player_bottom'))
+                    @if($ads)
+                    <!-- Ads -->
+                        <div class="mb-3">
+                            {!! ads !!}
+                        </div>
+
+                    {% endif %}#}
+
+                    <div class="entry-content htmlwrap clearfix">
+                        <div class="video-item mymo-entry-box">
+                            <article id="post-{{ post.id }}" class="item-content">
+                                {{ post.content|raw }}
+                            </article>
+
+                            <div class="item-content-toggle">
+                                <div class="item-content-gradient"></div>
+                                <span class="show-more" data-single="true" data-showmore="{{ __('Show more') }}" data-showless="{{ __('Show less') }}">{{ __('Show more') }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="comments">
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-movies">
+
+                <div id="mymo_related_movies-2xx" class="wrap-slider">
+                    <div class="section-bar clearfix">
+                        <h3 class="section-title"><span>{{ __('Similar movies') }}</span></h3>
+                    </div>
+                    <div id="mymo_related_movies-2" class="owl-carousel owl-theme related-film">
+                        {% for item in relatedMovies %}
+                            <article class="thumb grid-item post-{{ item.id }}">
+                                {{ get_template_part(item, 'content') }}
+                            </article>
+                        {% endfor %}
+                    </div>
+                    <script>
+                        $(document).on("turbolinks:load", function() {
+                            var owl = $('#mymo_related_movies-2');
+                            owl.owlCarousel({
+                                loop: true,
+                                margin: 4,
+                                autoplay: true,
+                                autoplayTimeout: 4000,
+                                autoplayHoverPause: true,
+                                nav: true,
+                                navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],
+                                responsiveClass: true,
+                                responsive: {
+                                    0: {items:2},
+                                    480: {items:3},
+                                    600: {items:4},
+                                    1000: {items: 4}
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+            </section>
+
+            <div class="the_tag_list">
+                {% for tag in tags %}
+                    <a href="{{ tag.url }}" title="{{ tag.name }}" rel="tag">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+        </main>
+
+        <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+            {{ dynamic_sidebar('sidebar') }}
+        </aside>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+{% if video.metas.source in ['embed', 'youtube'] %}
+    <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="{{ files[0].file }}" allowfullscreen></iframe></div>
+{% else %}
+<script type="text/javascript">
+
+    var resumeId = encodeURI('{{ md5(json_encode(files)) }}');
+    var playerInstance = jwplayer('ajax-player');
+    var files = JSON.parse('{{ json_encode(files)|raw }}');
+
+    if(typeof playerInstance != 'undefined'){
+
+        playerInstance.setup({
+            key: "ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=",
+            primary: "html5",
+            playlist: [{
+                title: "{{ movie.title }}",
+                image: "{{ movie.metas.poster }}",
+                sources: files,
+                tracks: [],
+                captions: {
+                    color: "#fff",
+                    fontSize: 14,
+                    backgroundOpacity: 0,
+                    edgeStyle: "raised"
+                }
+            }],
+            {% if config('player_watermark') %}
+            logo: {
+                file: "{{ upload_url(config('player_watermark_logo')) }}",
+                link: "{{ url('/') }}",
+                hide: "true",
+                target: "_blank",
+                position: "top-right",
+            },
+            {% endif %}
+            autoPause: {
+                viewability: true,
+                pauseAds: true
+            },
+            base: ".",
+            width: "100%",
+            height: "100%",
+            hlshtml: true,
+            autostart: true,
+            fullscreen: true,
+            playbackRateControls: true,
+            displayPlaybackLabel: true,
+            aspectratio: "16:9",
+            sharing: {
+                sites: [
+                    "reddit",
+                    "facebook",
+                    "twitter",
+                    "email",
+                    "linkedin"
+                ]
+            },
+            {% if ads_exists %}
+            advertising: {
+                client: 'vast',
+                admessage: '{{ __('Ads have xx seconds left') }}',
+                skiptext: '{{ __('Skip ad') }}',
+                skipmessage: '{{ __('Skip later xxs') }}',
+                schedule: {
+                    'ad1': {
+                        'offset': '1',
+                        'skipoffset': '5',
+                        'tag': '{{ url('ads.videos') }}'
+                    },
+                }
+            }
+            {% endif %}
+        });
+
+        mymoResumeVideo(resumeId, playerInstance);
+
+        mymoJwConfig(playerInstance);
+
+    }
+
+</script>
+{% endif %}

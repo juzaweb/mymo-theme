@@ -1,0 +1,44 @@
+<section id="mymo-advanced-widget-{{ data.key }}">
+    {% set tax = get_taxonomy(data.taxonomy) %}
+
+    {% set items = get_posts('movies', {
+        limit: 6,
+        taxonomy: data.taxonomy,
+        meta: {
+            'tv_series': data.taxonomy
+        }
+    }) %}
+
+    <h4 class="section-heading">
+        <a href="{{ tax.url }}" title="{{ data.title }}">
+            <span class="h-text">{{ data.title }}</span>
+        </a>
+
+        {% if data.childs %}
+            {% set childs = get_taxonomies({
+                'id_in': data.childs
+            }) %}
+            <ul class="heading-nav pull-right hidden-xs">
+                {% for child in childs %}
+                    <li class="section-btn mymo_ajax_get_post" data-catid="{{ child.id }}" data-showpost="12" data-widgetid="mymo-advanced-widget-{{ data.key }}" data-layout="6col">
+                        <span data-text="{{ child.name }}"></span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </h4>
+
+    <div id="mymo-advanced-widget-{{ data.key }}-ajax-box" class="mymo_box">
+        {% if items %}
+            {% for item in items %}
+                <article class="col-md-2 col-sm-4 col-xs-6 thumb grid-item post-{{ item.id }}">
+                    {{ get_template_part(item, 'content') }}
+                </article>
+            {% endfor %}
+        {% endif %}
+
+        <a href="{{ tax.url }}" class="see-more">{{ __('View all') }} »</a>
+    </div>
+
+</section>
+<div class="clearfix"></div>

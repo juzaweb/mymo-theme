@@ -1,0 +1,21 @@
+{% if data.meta.last_page > 1 %}
+<ul class='page-numbers'>
+    {% if data.meta.current_page != 1 %}
+        <li><a href="{{ data.meta.prev }}" class="prev page-numbers" title="{{ __('pagination.previous') }}"><i class="hl-down-open rotate-left"></i></a></li>
+    {% endif %}
+
+    {% for index,page in data.meta.links %}
+        {% if index > 0 and data.meta.links[index + 1] %}
+        {% if page.active %}
+            <li><span aria-current="page" class="page-numbers current">{{ page.label }}</span></li>
+        {% else %}
+            <li><a class="page-numbers" href="{{ page.url }}">{{ page.label }}</a></li>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if data.links.next %}
+        <li><a class="next page-numbers" href="{{ data.links.next }}" title="{{ __('pagination.next') }}"><i class="hl-down-open rotate-right"></i></a></li>
+    {% endif %}
+</ul>
+{% endif %}

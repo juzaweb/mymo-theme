@@ -1,0 +1,19 @@
+{% for item in items %}
+    {% if item.children %}
+        <li class="mega dropdown {% if item.is_active %} current-menu-item active {% endif %}">
+            <a title="Genre" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{ item.label }} <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+                {% for child in item.children %}
+
+                    <li class="{% if child.is_active %} current-menu-item active {% endif %}">
+                        <a title="{{ child.label }}" href="{{ child.link }}" {% if child.target == '_blank' %} target="_blank" {% endif %}>{{ child.label }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% else %}
+        <li class="{% if item.is_active %} current-menu-item active {% endif %}">
+            <a title="{{ item.label }}" href="{{ item.link }}" {% if item.target == '_blank' %} target="_blank" {% endif %}>{{ item.label }}</a>
+        </li>
+    {% endif %}
+{% endfor %}

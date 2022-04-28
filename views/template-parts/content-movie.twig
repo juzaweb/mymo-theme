@@ -1,0 +1,47 @@
+<div class="mymo-item">
+    {% set genres = get_post_taxonomies(post, 'genres') %}
+
+    {% set countries = get_post_taxonomies(post, 'countries') %}
+
+    {% set genre_str = '' %}
+    {% for genre in genres %}
+        {% set genre_str = genre_str ~ '<span class=category-name>' ~ genre.name ~ '</span>' %}
+    {% endfor %}
+
+    {% set country_str = '' %}
+    {% for country in countries %}
+        {% set country_str = country_str ~ '<span class=category-name>' ~ country.name ~ '</span>' %}
+    {% endfor %}
+    
+    <a class="mymo-thumb" href="{{ post.url }}" title="{{ post.title }}{{ post.metas.origin_title ? ' - ' ~ post.metas.origin_title : '' }}">
+        <figure>
+            <img class="lazyload blur-up img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ post.thumbnail }}" alt="{{ post.title }}{{ post.metas.origin_title ? ' - ' ~ post.metas.origin_title : '' }}" title="{{ post.title }}{{ post.metas.origin_title ? ' - ' ~ post.metas.origin_title : '' }}">
+        </figure>
+
+        <span class="status">{{ post.metas.video_quality }}</span>
+        {% if post.metas.tv_series == 0 %}
+            <span class="episode">{{ __('Full') }}</span>
+        {% else %}
+            <span class="episode">{{ __('Episode') }} {{ post.metas.current_episode }}{{ post.metas.max_episode ? '/' ~ post.metas.max_episode : '' }}</span>
+        {% endif %}
+        <div class="icon_overlay" data-html="true"
+             data-toggle="mymo-popover"
+             data-placement="top"
+             data-trigger="hover"
+             title="<span class=film-title>{{ post.title }}</span>"
+             data-content="<div class=org-title>{{ post.metas.origin_title }} ({{ post.metas.year }})</div>
+             <div class=film-meta>
+
+                            <div class=film-content>{{ post.description }}</div>
+                            <p class=category>{{ __('Countries') }}: {{ country_str }}</p>                                <p class=category>{{ __('Genres') }}: {{ genre_str }}</p>
+                        </div>">
+        </div>
+
+        <div class="mymo-post-title-box">
+            <div class="mymo-post-title ">
+                <h2 class="entry-title">{{ post.title }}</h2>
+                <p class="original_title">{{ post.metas.origin_title }} ({{ post.metas.year }})</p>
+            </div>
+        </div>
+    </a>
+</div>

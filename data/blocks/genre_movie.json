@@ -1,0 +1,42 @@
+{
+    "label": "Genre movie",
+    "description": "Movie by genre",
+    "form": [
+        {
+            "type": "text",
+            "name": "title",
+            "label": "Title"
+        },
+        {
+            "type": "select",
+            "name": "tv_series",
+            "label": "Movie Type",
+            "data": {
+                "options": {
+                    "0": "All",
+                    "1": "Movie",
+                    "2": "TV Series"
+                }
+            }
+        },
+        {
+            "type": "taxonomy",
+            "name": "taxonomy",
+            "label": "Genres",
+            "data": {
+                "post_type": "movies",
+                "taxonomy": "genres"
+            }
+        },
+        {
+            "type": "taxonomy",
+            "name": "childs",
+            "label": "Childs",
+            "data": {
+                "post_type": "movies",
+                "taxonomy": "genres",
+                "multiple": true
+            }
+        }
+    ]
+}

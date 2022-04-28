@@ -1,0 +1,25 @@
+{{ text_field(__('Title'), 'title', {
+    value: data.title
+}) }}
+
+{{ select_field(__('Movie Type'), 'tv_series', {
+    value: data.tv_series,
+    options: {
+        0: __('All'),
+        1: __('Movie'),
+        2: __('TV Series')
+    },
+}) }}
+
+{{ select_taxonomy_field(__('Genres'), 'taxonomy', {
+    value: data.taxonomy,
+    post_type: 'movies',
+    taxonomy: 'genres',
+}) }}
+
+{{ select_taxonomy_field(__('Genres childs'), 'childs[]', {
+    value: data.childs,
+    post_type: 'movies',
+    taxonomy: 'genres',
+    multiple: true,
+}) }}

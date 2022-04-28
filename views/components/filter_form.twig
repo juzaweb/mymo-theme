@@ -1,0 +1,71 @@
+<div class="mymo-search-filter">
+    <div class="btn-group col-md-12">
+        <form method="get" action="{{ url('search') }}" id="form-filter" class="form-inline">
+            <input type="hidden" name="type" value="movies">
+
+            <div class="col-md-1 col-xs-12 col-sm-6">
+                <div class="filter-box">
+                    <div class="filter-box-title">{{ __('Sort') }}</div>
+                    <select class="form-control" id="sort" name="sort">
+                        <option value="">{{ __('Sort') }}</option>
+                        <option value="latest">{{ __('Latest') }}</option>
+                        <option value="top_views">{{ __('Top views') }}</option>
+                        <option value="new_update">{{ __('New update') }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-1 col-xs-12 col-sm-6">
+                <div class="filter-box">
+                    <div class="filter-box-title">{{ __('Formats') }}</div>
+                    <select class="form-control" id="format" name="meta[tv_series]">
+                        <option value="">{{ __('Formats') }}</option>
+                        <option value="0">{{ __('Movies') }}</option>
+                        <option value="1">{{ __('TV series') }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-12 col-sm-6">
+                <div class="filter-box">
+                    <div class="filter-box-title">{{ __('Country') }}</div>
+                    <select class="form-control" name="countries[]">
+                        <option value="">{{ __('Country') }}</option>
+                        {% for country in countries %}
+                        <option value="{{ country.id }}">{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-1 col-xs-12 col-sm-6">
+                <div class="filter-box">
+                    <div class="filter-box-title">{{ __('Year') }}</div>
+                    <select class="form-control" name="years[]">
+                        <option value="">{{ __('Year') }}</option>
+                        {% for year in years %}
+                        <option value="{{ year.id }}">{{ year.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-xs-12 col-sm-6">
+                <div class="filter-box">
+                    <div class="filter-box-title">{{ __('Genre') }}</div>
+                    <select class="form-control" id="genre" name="genres[]">
+                        <option value="">{{ __('Genre') }}</option>
+                        {% for genre in genres %}
+                        <option value="{{ genre.id }}">{{ genre.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-12 col-sm-6">
+                <button type="submit" id="btn-movie-filter" class="btn btn-danger">{{ __('Filter movies') }}</button>
+            </div>
+
+        </form>
+    </div>
+</div>

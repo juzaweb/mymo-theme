@@ -1,0 +1,45 @@
+{% set slider = get_post_resource('sliders', data.slider) %}
+
+{% if slider %}
+    {% set sliderItems = slider.metas.content ? json_decode(slider.metas.content, true) : {} %}
+    <div class="row fullwith-slider">
+
+        <div id="mymo-fullwith-slider-widget-{{ data.key }}" class="owl-carousel owl-carousel-fullwidth owl-theme">
+            {% if sliderItems %}
+                {% for index, item in sliderItems %}
+                    <div class="post-{{ index }} item">
+                        <a href="{{ item.link }}" title="{{ item.title }}" {% if item.new_tab == 1 %} target="_blank" {% endif %}>
+                            <img src="{{ upload_url(item.image) }}" alt="{{ item.title }}"  class="slide-image" />
+                            <div class="slide-text">
+                                <h3 class="slider-title">{{ item.title }}</h3>
+                                <div class="slider-meta hidden-xs">
+                                    <p>{{ item.description }}</p>										         </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var owl = $('#mymo-fullwith-slider-widget-{{ data.key }}');
+                owl.owlCarousel({
+                    rtl:false,
+                    items: 1,
+                    loop: true,
+                    animateOut: 'fadeOutLeft',
+                    animateIn: 'fadeInRight',
+                    smartSpeed: 450,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
+                    autoHeight: true,
+                    autoplayHoverPause: true,
+                    nav: true,
+                    navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],
+                    responsiveClass: true,
+                });
+            });
+        </script>
+    </div>
+{% endif %}

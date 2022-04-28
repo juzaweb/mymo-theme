@@ -1,0 +1,64 @@
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var mymo = {
+        "ajax_search_url": "{{ url('search/ajax') }}",
+        "ajax_notification_url": "",
+        "ajax_remove_all_notification_url": "",
+        "ajax_popular_movies_url": "{{ url('ajax', ['popular-movies']) }}",
+        "ajax_get_movies_by_genre_url": "{{ url('ajax', ['movies-genre']) }}",
+        "ajax_filter_form_url": "{{ url('ajax', ['mymo_filter_form']) }}",
+        "light_mode":"0",
+        "light_mode_btn":"1",
+        "ajax_live_search":"1",
+        "sync":null,
+        "db_redirect_url":"{{ url().current() }}",
+        "languages": {
+            'notification': "{{ __('Notification') }}",
+            'nothing_found': "{{ __('Nothing found') }}",
+            'remove_all': "{{ __('Remove all') }}",
+            'bookmark': "{{ __('Bookmark') }}",
+        }
+    };
+    /* ]]> */
+</script>
+
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var ajax_auth_object = {
+        "logined": "{{ auth ? '1' : '0' }}",
+        "login_url": "{{ url('login') }}",
+        "user_registration": "{{ config('user_registration') }}",
+        "register_url": "{{ url('register') }}",
+        "forgot_password_url": "",
+        "redirecturl":"{{ url().current() }}",
+        "loadingmessage":"{{ __('Please wait') }}",
+        "recaptcha":"{{ config('google_recaptcha') }}",
+        "sitekey":"{{ config('google_recaptcha_key') }}",
+        "languages":{
+            "login":"{{ __('Login') }}",
+            "register":"{{ __('Register') }}",
+            "forgotpassword":"{{ __('Forgot password?') }}",
+            "already_account":"{{ __('Already have an account') }}",
+            "create_account":"{{ __('Create account') }}",
+            "reset_captcha":"{{ __('reset captcha') }}",
+            "username":"{{ __('Name') }}",
+            "email":"{{ __('Email') }}",
+            "username_email":"{{ __('Email') }}",
+            "password":"{{ __('Password') }}",
+            "reset_password":"{{ __('Reset password') }}",
+            "login_with":"{{ __('Login with') }}",
+            "register_with":"{{ __('Register with') }}",
+            "or":"{{ __('or') }}",
+            "result_for_keyword":"{{ __('Result for keyword') }}",
+            "apparently_there_are_no_posts_to_show": "{{ __('Apparently there are no posts to show') }}"
+        }
+    };
+    /* ]]> */
+</script>
+
+<style type="text/css">
+    #header .site-title {
+        background: url({{ get_logo() }}) no-repeat top left;
+        text-indent: -9999px;
+    }
+</style>

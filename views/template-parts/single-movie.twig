@@ -1,0 +1,22 @@
+{% extends('layouts.frontend') %}
+
+{% block content %}
+    {% set genres = get_post_taxonomies(post, 'genres') %}
+    {% set countries = get_post_taxonomies(post, 'countries') %}
+    {% set genre = genres[0] ?? null %}
+    {% set star = 0 %}
+    {% set player_id = 0 %}
+    {% set relatedMovies = get_related_posts(post, 8) %}
+    {% set star = post.getStarRating() %}
+    {% set servers = get_post_resources(post, 'servers') %}
+
+    {% if input_get('video') %}
+
+        {% set is_watch = true %}
+        {% set player_id = input_get('video') %}
+
+        {% include('theme::watch.watch') %}
+    {% else %}
+        {% include('theme::watch.index') %}
+    {% endif %}
+{% endblock %}
