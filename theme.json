@@ -3,7 +3,7 @@
     "title": "Mymo",
     "description": "Mymo",
     "author": "Mymo",
-    "version": "1.1.2",
+    "version": "1.1.0",
     "require": {
         "juzaweb/movie": "^1.1.1",
         "juzaweb/image-slider": "^1.0.1",
