@@ -6,6 +6,7 @@
     var resumeId = encodeURI('{{ md5(json_encode(files)) }}');
     var playerInstance = jwplayer('ajax-player');
     var files = JSON.parse('{{ json_encode(files)|raw }}');
+    var tracks = JSON.parse('{{ json_encode(tracks)|raw }}');
 
     if(typeof playerInstance != 'undefined'){
 
@@ -16,7 +17,7 @@
                 title: "{{ movie.title }}",
                 image: "{{ movie.metas.poster }}",
                 sources: files,
-                tracks: [],
+                tracks: tracks,
                 captions: {
                     color: "#fff",
                     fontSize: 14,
