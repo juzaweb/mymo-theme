@@ -6,7 +6,7 @@
     var resumeId = encodeURI('{{ md5(json_encode(files)) }}');
     var playerInstance = jwplayer('ajax-player');
     var files = JSON.parse('{{ json_encode(files)|raw }}');
-    var tracks = JSON.parse('{{ json_encode(tracks)|raw }}');
+    var tracks = JSON.parse('{{ json_encode(tracks|default([]))|raw }}');
 
     if(typeof playerInstance != 'undefined'){
 
